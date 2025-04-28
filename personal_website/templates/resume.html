@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Rezyume{% endblock %}
+{% block meta_description %}Rezyume - ish tajribasi, ta'lim va ko‘nikmalar{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/resume.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="resume">
+        <div class="resume-header">
+            <img src="{% if profile %}{{ profile.image.url }}{% else %}{% static 'images/profile.jpg' %}{% endif %}" alt="Shaxsiy rasm" class="profile-img">
+            <h1>Rezyume</h1>
+        </div>
+        <div class="resume-content">
+            <div class="section timeline">
+                <h2>Ish tajribasi</h2>
+                {% for work in work_experiences %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>{{ work.title }} - {{ work.company }}</h3>
+                            <p><strong>{{ work.start_date }} - {{ work.end_date|default:"Hozirgacha" }}</strong></p>
+                            <p>{{ work.description }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Hozircha ish tajribasi qo'shilmagan.</p>
+                {% endfor %}
+            </div>
+            <div class="section timeline">
+                <h2>Ta’lim</h2>
+                {% for education in educations %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>{{ education.degree }} - {{ education.institution }}</h3>
+                            <p><strong>{{ education.start_date }} - {{ education.end_date|default:"Hozirgacha" }}</strong></p>
+                            <p>{{ education.description }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Hozircha ta'lim ma'lumotlari qo'shilmagan.</p>
+                {% endfor %}
+            </div>
+            <div class="section skills">
+                <h2>Ko‘nikmalar</h2>
+                {% for skill in skills %}
+                    <div class="skill-item">
+                        <p>{{ skill.name }}</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: {{ skill.percentage }}%;"></div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Hozircha ko'nikmalar qo'shilmagan.</p>
+                {% endfor %}
+            </div>
+            <div class="section certificates">
+                <h2>Sertifikatlar</h2>
+                {% for certificate in certificates %}
+                    <div class="certificate-card">
+                        <h3>{{ certificate.title }}</h3>
+                        <p>{{ certificate.issue_date }}, {{ certificate.issuer }}</p>
+                        <p>{{ certificate.description }}</p>
+                    </div>
+                {% empty %}
+                    <p>Hozircha sertifikatlar qo'shilmagan.</p>
+                {% endfor %}
+            </div>
+            <a href="{% static 'resume.pdf' %}" class="download-button">Rezyumeni PDF sifatida yuklab olish</a>
+        </div>
+    </section>
+{% endblock %}

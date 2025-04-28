@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Men haqimda{% endblock %}
+{% block meta_description %}Men haqimda - shaxsiy va professional ma'lumotlar{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/about.css">
+{% endblock %}
+{% block content %}
+    <section class="about">
+        <h1>Men haqimda</h1>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Salom, men BUNYOD</h2>
+                <p>Men veb-dasturchi va dizayner sifatida 5 yildan ortiq tajribaga egaman. Mening maqsadim - foydalanuvchilar uchun qulay va zamonaviy veb-saytlar yaratish.</p>
+                <p>Bo‘sh vaqtimda yangi texnologiyalarni o‘rganishni, kitob o‘qishni va sayohat qilishni yaxshi ko‘raman.</p>
+            </div>
+            <div class="skills">
+                <h3>Ko‘nikmalar</h3>
+                <ul>
+                    {% for skill in skills %}
+                        <li>{{ skill.name }} - {{ skill.percentage }}%</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

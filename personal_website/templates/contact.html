@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Kontakt{% endblock %}
+{% block meta_description %}Kontakt - aloqa ma'lumotlari va forma{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/contact.css">
+{% endblock %}
+{% block content %}
+    <section class="contact">
+        <h1>Aloqa</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Aloqa ma’lumotlari</h2>
+                <p><strong>Email:</strong> example@email.com</p>
+                <p><strong>Telefon:</strong> +998 99 123 45 67</p>
+                <p><strong>Ijtimoiy tarmoqlar:</strong></p>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Xabar yuborish</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Ismingiz" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Xabaringiz" required></textarea>
+                    <button type="submit">Yuborish</button>
+                </form>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509371!2d144.9537353153167!3d-37.81627927975146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727e3b3a2c4d!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1631234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+{% endblock %}

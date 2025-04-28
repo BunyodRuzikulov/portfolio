@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/blog.css">
+{% endblock %}
+{% block content %}
+    <section class="blog">
+        <h1>{{ post.title }}</h1>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%;">
+        {% endif %}
+        <div>{{ post.content|safe }}</div>
+        <p>Yozilgan sana: {{ post.created_at }}</p>
+    </section>
+{% endblock %}

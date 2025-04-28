@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Xizmatlar{% endblock %}
+{% block meta_description %}Xizmatlar - taklif qilinadigan xizmatlar{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/services.css">
+{% endblock %}
+{% block content %}
+    <section class="services">
+        <h1>Xizmatlar</h1>
+        <div class="services-grid">
+            {% for service in services %}
+                <div class="service-card">
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }} Narx: {{ service.price }}</p>
+                    <a href="{% url 'contact' %}" class="service-link">Buyurtma berish</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
